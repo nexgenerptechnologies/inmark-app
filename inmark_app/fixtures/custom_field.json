@@ -40,18 +40,18 @@
  {
   "doctype": "Custom Field",
   "dt": "Item",
-  "fieldname": "custom_product_breadth",
+  "fieldname": "custom_product_width",
   "fieldtype": "Float",
   "insert_after": "custom_product_length",
-  "label": "Product Breadth (cm)",
-  "name": "Item-custom_product_breadth"
+  "label": "Product Width (cm)",
+  "name": "Item-custom_product_width"
  },
  {
   "doctype": "Custom Field",
   "dt": "Item",
   "fieldname": "custom_product_height",
   "fieldtype": "Float",
-  "insert_after": "custom_product_breadth",
+  "insert_after": "custom_product_width",
   "label": "Product Height (cm)",
   "name": "Item-custom_product_height"
  },
@@ -76,23 +76,23 @@
  {
   "doctype": "Custom Field",
   "dt": "Item",
-  "fieldname": "custom_packing_breadth",
+  "fieldname": "custom_packing_width",
   "fieldtype": "Float",
   "insert_after": "custom_packing_length",
-  "label": "Packing Breadth (cm)",
-  "name": "Item-custom_packing_breadth"
+  "label": "Packing Width (cm)",
+  "name": "Item-custom_packing_width"
  },
  {
   "doctype": "Custom Field",
   "dt": "Item",
   "fieldname": "custom_packing_height",
   "fieldtype": "Float",
-  "insert_after": "custom_packing_breadth",
+  "insert_after": "custom_packing_width",
   "label": "Packing Height (cm)",
   "name": "Item-custom_packing_height"
  },
  {
-  "description": "Auto-calculated: (L \u00d7 B \u00d7 H) / 1,000,000",
+  "description": "Auto-calculated: (L \u00d7 W \u00d7 H) / 1,000,000",
   "doctype": "Custom Field",
   "dt": "Item",
   "fieldname": "custom_product_packing_cbm",

@@ -1,0 +1,1 @@
+# Empty patches file for Frappe migrations

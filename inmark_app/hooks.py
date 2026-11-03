@@ -19,8 +19,8 @@ doc_events = {
     }
 }
 
-# Fixtures for Custom Fields and Property Setters
-# -----------------------------------------------
+# Fixtures for Custom Fields
+# --------------------------
 fixtures = [
     {
         "dt": "Custom Field",
@@ -47,18 +47,6 @@ fixtures = [
                     "Item-custom_col_weights",
                     "Item-custom_net_weight_kg",
                     "Item-custom_gross_weight_kg"
-                ]
-            ]
-        ]
-    },
-    {
-        "dt": "Property Setter",
-        "filters": [
-            [
-                "name",
-                "in",
-                [
-                    "Item-description-depends_on"
                 ]
             ]
         ]

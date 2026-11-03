@@ -1,0 +1,15 @@
+[
+ {
+  "default_value": null,
+  "doc_type": "Item",
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "description",
+  "module": null,
+  "name": "Item-description-depends_on",
+  "property": "depends_on",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "eval:!doc.custom_is_finished_good"
+ }
+]

@@ -7,7 +7,7 @@ from frappe.utils import flt
 def before_save(doc, method=None):
 	"""
 	Server-side hook on Item before_save:
-	Calculates Product Packing CBM and Carton CBMs automatically for Finished Goods.
+	Calculates Product Packing CBM and Carton CBMs + Master Carton Weights automatically.
 	"""
 	# 1. Product Packing CBM
 	l = flt(doc.get("custom_packing_length"))
@@ -20,6 +20,9 @@ def before_save(doc, method=None):
 
 	# 2. Carton Details CBM (Inner & Master Cartons)
 	total_carton_cbm = 0.0
+	master_net_wt = 0.0
+	master_gross_wt = 0.0
+
 	for row in doc.get("custom_carton_details") or []:
 		rl = flt(row.get("length"))
 		rb = flt(row.get("breadth"))
@@ -35,4 +38,11 @@ def before_save(doc, method=None):
 			row.unit_cbm = 0.0
 			row.total_cbm = 0.0
 
+		# Option A: Auto-fetch from Master Carton
+		if row.get("carton_type") == "Master Carton":
+			master_net_wt += flt(row.get("net_weight")) * rqty
+			master_gross_wt += flt(row.get("gross_weight")) * rqty
+
 	doc.custom_total_carton_cbm = flt(total_carton_cbm, 4)
+	doc.custom_net_weight_kg = flt(master_net_wt, 3)
+	doc.custom_gross_weight_kg = flt(master_gross_wt, 3)

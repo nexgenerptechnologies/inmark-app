@@ -32,8 +32,17 @@ frappe.ui.form.on('Item Carton Detail', {
 	qty: function(frm, cdt, cdn) {
 		update_carton_row_cbm(frm, cdt, cdn);
 	},
+	carton_type: function(frm) {
+		update_carton_totals(frm);
+	},
+	net_weight: function(frm) {
+		update_carton_totals(frm);
+	},
+	gross_weight: function(frm) {
+		update_carton_totals(frm);
+	},
 	custom_carton_details_remove: function(frm) {
-		update_total_carton_cbm(frm);
+		update_carton_totals(frm);
 	}
 });
 
@@ -64,18 +73,29 @@ function update_carton_row_cbm(frm, cdt, cdn) {
 		frappe.model.set_value(cdt, cdn, 'unit_cbm', 0);
 		frappe.model.set_value(cdt, cdn, 'total_cbm', 0);
 	}
-	update_total_carton_cbm(frm);
+	update_carton_totals(frm);
 }
 
-function update_total_carton_cbm(frm) {
-	let total = 0.0;
+function update_carton_totals(frm) {
+	let total_cbm = 0.0;
+	let master_net_wt = 0.0;
+	let master_gross_wt = 0.0;
+
 	(frm.doc.custom_carton_details || []).forEach(function(row) {
-		total += flt(row.total_cbm);
+		total_cbm += flt(row.total_cbm);
+		if (row.carton_type === 'Master Carton') {
+			let qty = flt(row.qty) || 1.0;
+			master_net_wt += flt(row.net_weight) * qty;
+			master_gross_wt += flt(row.gross_weight) * qty;
+		}
 	});
-	frm.set_value('custom_total_carton_cbm', flt(total, 4));
+
+	frm.set_value('custom_total_carton_cbm', flt(total_cbm, 4));
+	frm.set_value('custom_net_weight_kg', flt(master_net_wt, 3));
+	frm.set_value('custom_gross_weight_kg', flt(master_gross_wt, 3));
 }
 
 function calculate_all_cbm(frm) {
 	update_product_packing_cbm(frm);
-	update_total_carton_cbm(frm);
+	update_carton_totals(frm);
 }

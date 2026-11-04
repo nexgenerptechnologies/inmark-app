@@ -178,7 +178,10 @@
   "fieldtype": "Float",
   "insert_after": "custom_col_weights",
   "label": "Net Weight (Kg)",
-  "name": "Item-custom_net_weight_kg"
+  "name": "Item-custom_net_weight_kg",
+  "read_only": 1,
+  "precision": "3",
+  "description": "Auto-calculated from Master Carton"
  },
  {
   "doctype": "Custom Field",
@@ -187,6 +190,9 @@
   "fieldtype": "Float",
   "insert_after": "custom_net_weight_kg",
   "label": "Gross Weight (Kg)",
-  "name": "Item-custom_gross_weight_kg"
+  "name": "Item-custom_gross_weight_kg",
+  "read_only": 1,
+  "precision": "3",
+  "description": "Auto-calculated from Master Carton"
  }
 ]

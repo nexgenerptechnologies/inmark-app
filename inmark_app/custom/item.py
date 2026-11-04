@@ -11,10 +11,10 @@ def before_save(doc, method=None):
 	"""
 	# 1. Product Packing CBM
 	l = flt(doc.get("custom_packing_length"))
-	w = flt(doc.get("custom_packing_width"))
+	b = flt(doc.get("custom_packing_breadth"))
 	h = flt(doc.get("custom_packing_height"))
-	if l and w and h:
-		doc.custom_product_packing_cbm = flt((l * w * h) / 1000000.0, 4)
+	if l and b and h:
+		doc.custom_product_packing_cbm = flt((l * b * h) / 1000000.0, 4)
 	else:
 		doc.custom_product_packing_cbm = 0.0
 
@@ -22,12 +22,12 @@ def before_save(doc, method=None):
 	total_carton_cbm = 0.0
 	for row in doc.get("custom_carton_details") or []:
 		rl = flt(row.get("length"))
-		rw = flt(row.get("width"))
+		rb = flt(row.get("breadth"))
 		rh = flt(row.get("height"))
 		rqty = flt(row.get("qty")) or 1.0
 
-		if rl and rw and rh:
-			unit_cbm = flt((rl * rw * rh) / 1000000.0, 4)
+		if rl and rb and rh:
+			unit_cbm = flt((rl * rb * rh) / 1000000.0, 4)
 			row.unit_cbm = unit_cbm
 			row.total_cbm = flt(unit_cbm * rqty, 4)
 			total_carton_cbm += flt(row.total_cbm)

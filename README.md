@@ -4,11 +4,15 @@ Custom Frappe / ERPNext app for Inmark Exports.
 ## Features Included:
 
 ### 1. Finished Goods Packaging & Dimensions (Item Master):
-- **Product Dimension (LxWxH cm)**
-- **Product Packing Size (LxWxH cm)** with automatic CBM calculation: `(L × W × H) / 1,000,000`
+- **Product Dimension (LxBxH cm)**:
+  - Product Length (cm), Product Breadth (cm), Product Height (cm)
+  - Product (Kg) & Product Dia (cm)
+- **Product Packing Size (LxBxH cm)** with automatic CBM calculation: `(L × B × H) / 1,000,000`
+  - Packing Length (cm), Packing Breadth (cm), Packing Height (cm)
+  - Product Packing CBM (read-only, auto-calculated)
 - **Multi-tier Carton Details Child Table (`Item Carton Detail`)**:
   - Supports 1 or more Inner Cartons and Master Cartons
-  - Outer dimensions (LxWxH cm), Unit CBM, Quantity, Total CBM
+  - Outer dimensions (Length, Breadth, Height cm), Unit CBM, Quantity, Total CBM
   - Cumulative Carton CBM auto-summed to `custom_total_carton_cbm`
   - Net Weight (Kg) and Gross Weight (Kg)
   - All fields conditionally visible only when **Is Finished Good** is checked.

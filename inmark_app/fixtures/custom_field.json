@@ -61,7 +61,7 @@
   "fieldname": "custom_product_kg",
   "fieldtype": "Float",
   "insert_after": "custom_product_height",
-  "label": "Product (Kg)",
+  "label": "Product Weight (Kg)",
   "name": "Item-custom_product_kg"
  },
  {

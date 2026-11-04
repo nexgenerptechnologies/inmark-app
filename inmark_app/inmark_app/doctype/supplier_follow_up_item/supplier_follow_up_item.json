@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "creation": "2026-11-04 17:10:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "purchase_order",
+  "po_status",
+  "item_code",
+  "item_name",
+  "description",
+  "qty",
+  "pending_qty",
+  "rate",
+  "expected_delivery_date",
+  "revised_delivery_date",
+  "item_status",
+  "note",
+  "past_notes"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purchase Order",
+   "options": "Purchase Order",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "po_status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "PO Status",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "PO Qty",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "pending_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Pending Qty",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Price / Rate",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "expected_delivery_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "PO Delivery Date",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "revised_delivery_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Revised Delivery Date"
+  },
+  {
+   "columns": 1,
+   "default": "On Track",
+   "fieldname": "item_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "On Track\nDelayed\nDispatched\nPartially Received\nCompleted\nCancelled"
+  },
+  {
+   "columns": 2,
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Follow-Up Note / Action Item"
+  },
+  {
+   "fieldname": "past_notes",
+   "fieldtype": "Small Text",
+   "label": "Latest Previous Note",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-11-04 17:10:00.000000",
+ "modified_by": "Administrator",
+ "module": "Inmark App",
+ "name": "Supplier Follow Up Item",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

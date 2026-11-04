@@ -1,0 +1,257 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-11-04 17:10:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "section_supplier",
+  "supplier",
+  "supplier_name",
+  "contact_person",
+  "column_break_meeting",
+  "follow_up_date",
+  "communication_mode",
+  "followed_up_by",
+  "next_follow_up_date",
+  "status",
+  "section_mom",
+  "meeting_subject",
+  "attendees",
+  "minutes_of_meeting",
+  "section_po",
+  "items",
+  "section_summary",
+  "total_items_reviewed",
+  "items_on_track",
+  "items_delayed",
+  "column_break_sum",
+  "overall_supplier_commitment",
+  "tab_history",
+  "selected_po_for_history",
+  "history_html"
+ ],
+ "fields": [
+  {
+   "default": "SFU-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "no_copy": 1,
+   "options": "SFU-.YYYY.-.#####",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "section_supplier",
+   "fieldtype": "Section Break",
+   "label": "Supplier & Meeting Details"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Supplier",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "supplier.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Supplier Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Link",
+   "label": "Contact Person",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "column_break_meeting",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "follow_up_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Follow-Up Date & Time",
+   "reqd": 1
+  },
+  {
+   "default": "Phone Call",
+   "fieldname": "communication_mode",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Communication Mode",
+   "options": "In-Person Meeting\nPhone Call\nWhatsApp\nEmail\nFactory Visit",
+   "reqd": 1
+  },
+  {
+   "default": "__user",
+   "fieldname": "followed_up_by",
+   "fieldtype": "Link",
+   "label": "Followed Up By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "next_follow_up_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Next Follow-Up Date"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Open\nCompleted\nCancelled"
+  },
+  {
+   "fieldname": "section_mom",
+   "fieldtype": "Section Break",
+   "label": "Minutes of Meeting (MoM) & General Discussion"
+  },
+  {
+   "description": "e.g. Weekly Production Review, Price Revision, Delay Discussion",
+   "fieldname": "meeting_subject",
+   "fieldtype": "Data",
+   "label": "Meeting Subject / Agenda"
+  },
+  {
+   "description": "Names of representatives from Supplier and Inmark",
+   "fieldname": "attendees",
+   "fieldtype": "Small Text",
+   "label": "Attendees Present"
+  },
+  {
+   "description": "Record key discussion points, agreements, and decisions",
+   "fieldname": "minutes_of_meeting",
+   "fieldtype": "Text Editor",
+   "label": "Minutes of Meeting (MoM)"
+  },
+  {
+   "fieldname": "section_po",
+   "fieldtype": "Section Break",
+   "label": "Purchase Order Follow-Up (Line Items)"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Purchase Order Items",
+   "options": "Supplier Follow Up Item"
+  },
+  {
+   "fieldname": "section_summary",
+   "fieldtype": "Section Break",
+   "label": "Follow-Up Summary & Commitments"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_items_reviewed",
+   "fieldtype": "Int",
+   "label": "Total Items Reviewed",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "items_on_track",
+   "fieldtype": "Int",
+   "label": "Items On Track",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "items_delayed",
+   "fieldtype": "Int",
+   "label": "Items Delayed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_sum",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "overall_supplier_commitment",
+   "fieldtype": "Small Text",
+   "label": "Overall Supplier Commitment / Final Remarks"
+  },
+  {
+   "fieldname": "tab_history",
+   "fieldtype": "Tab Break",
+   "label": "Past Follow-Up History & Notes"
+  },
+  {
+   "description": "Filter by any open or closed Purchase Order to see its entire follow-up history",
+   "fieldname": "selected_po_for_history",
+   "fieldtype": "Link",
+   "label": "Filter History by Purchase Order (Optional)",
+   "options": "Purchase Order"
+  },
+  {
+   "fieldname": "history_html",
+   "fieldtype": "HTML",
+   "label": "Follow-Up History"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-11-04 17:10:00.000000",
+ "modified_by": "Administrator",
+ "module": "Inmark App",
+ "name": "Supplier Follow Up",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "follow_up_date",
+ "sort_order": "DESC",
+ "states": [],
+ "timeline_field": "supplier",
+ "track_changes": 1
+}

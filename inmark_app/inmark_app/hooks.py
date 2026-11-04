@@ -8,7 +8,8 @@ app_license = "mit"
 # Includes in <head>
 # ------------------
 doctype_js = {
-    "Item": "public/js/item.js"
+    "Item": "public/js/item.js",
+    "Purchase Order": "public/js/purchase_order.js"
 }
 
 # Document Events

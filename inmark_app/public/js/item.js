@@ -8,6 +8,39 @@ frappe.ui.form.on('Item', {
 	custom_is_finished_good: function(frm) {
 		frm.refresh_fields();
 	},
+	// Instant duplicate check on typing Item Code
+	item_code: function(frm) {
+		if (!frm.is_new() || !frm.doc.item_code) return;
+		let code = frm.doc.item_code.trim();
+
+		frappe.call({
+			method: 'frappe.client.get_value',
+			args: {
+				doctype: 'Item',
+				fieldname: ['name', 'item_name', 'item_group'],
+				filters: {'item_code': code}
+			},
+			callback: function(r) {
+				if (r.message && r.message.name) {
+					frappe.msgprint({
+						title: __('Duplicate Item Code!'),
+						indicator: 'red',
+						message: __('Item Code <b>{0}</b> already exists in the system.<br>Item Name: <b>{1}</b> ({2})<br><br><a href="/desk#Form/Item/{0}" target="_blank" class="btn btn-xs btn-primary">Open Existing Item</a>', [code, r.message.item_name || '', r.message.item_group || ''])
+					});
+					frm.set_value('item_code', '');
+				}
+			}
+		});
+	},
+	async validate(frm) {
+		if (frm.is_new() && frm.doc.item_code) {
+			let code = frm.doc.item_code.trim();
+			let check = await frappe.db.get_value('Item', {'item_code': code}, ['name']);
+			if (check && check.message && check.message.name) {
+				frappe.throw(__('Item Code "{0}" already exists in the system. Duplicate item creation is not allowed!', [code]));
+			}
+		}
+	},
 	custom_packing_length: function(frm) {
 		update_product_packing_cbm(frm);
 	},

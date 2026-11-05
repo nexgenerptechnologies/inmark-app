@@ -7,9 +7,18 @@ from frappe.utils import flt
 def before_save(doc, method=None):
 	"""
 	Server-side hook on Item before_save:
-	Calculates Product Packing CBM and Carton CBMs + Master Carton Weights automatically.
+	1. Strict Duplicate Check on Item Code
+	2. Calculates Product Packing CBM and Carton CBMs
+	3. Calculates Master Carton Weights (Option A)
 	"""
-	# 1. Product Packing CBM
+	# 1. Strict Duplicate Item Code check on insert
+	if doc.is_new() and doc.item_code:
+		clean_code = doc.item_code.strip()
+		existing = frappe.db.get_value("Item", {"name": clean_code}, "name")
+		if existing:
+			frappe.throw(f"Item Code '{clean_code}' already exists in the system! Duplicate item creation is not allowed.")
+
+	# 2. Product Packing CBM
 	l = flt(doc.get("custom_packing_length"))
 	b = flt(doc.get("custom_packing_breadth"))
 	h = flt(doc.get("custom_packing_height"))
@@ -18,7 +27,7 @@ def before_save(doc, method=None):
 	else:
 		doc.custom_product_packing_cbm = 0.0
 
-	# 2. Carton Details CBM (Inner & Master Cartons)
+	# 3. Carton Details CBM (Inner & Master Cartons)
 	total_carton_cbm = 0.0
 	master_net_wt = 0.0
 	master_gross_wt = 0.0

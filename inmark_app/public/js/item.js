@@ -25,7 +25,7 @@ frappe.ui.form.on('Item', {
 					frappe.msgprint({
 						title: __('Duplicate Item Code!'),
 						indicator: 'red',
-						message: __('Item Code <b>{0}</b> already exists in the system.<br>Item Name: <b>{1}</b> ({2})<br><br><a href="/desk#Form/Item/{0}" target="_blank" class="btn btn-xs btn-primary">Open Existing Item</a>', [code, r.message.item_name || '', r.message.item_group || ''])
+						message: __('Item Code <b>{0}</b> already exists in the system.<br>Item Name: <b>{1}</b> ({2})', [code, r.message.item_name || '', r.message.item_group || ''])
 					});
 					frm.set_value('item_code', '');
 				}
